@@ -8,6 +8,7 @@ const Navbar = ()=>{
     <div className='navbar'>
   <img src={navlogo} alt="" className='navlogo'/>
   <img src={navprofile} alt=""  className='navprofile'/>
+
     </div>
   )
 }

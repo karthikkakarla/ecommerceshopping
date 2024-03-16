@@ -213,7 +213,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-//creating endpoint for newcollection data
+//creating endpoint for newarrivals data
 app.get('/newarrivals', async (req, res) => {
     let products = await Product.find({});
     let newarrivals = products.slice(1).slice(-4);
@@ -229,6 +229,32 @@ app.get('/bestsellers', async (req, res) => {
     res.send(best_sellers);
 });
 
+//creating middleware to fetch user
+const fetchUser = async (req,res,next)=>{
+    const token = req.header('auth-token');
+    if(!token){
+        res.status(401).send({errors:"Please Authenticate using valid token"})
+    }
+    else{
+        try{
+            const data = jwt.verify(token,'secret_ecom');
+            req.user = data.user;
+            next();
+        }catch(error){
+          res.status(401).send({
+            errors:"please authrnticate using a valid token"
+          })
+        }
+    }
+}
+
+//creating endpoint for adding productsin cartdata
+add.post('/addtocart',fetchUser, async (req,res)=>{
+   let userData = await Users.findOne({_id:req.user.id});
+   userData.cartData[req.body.itemId]+= 1;
+   await Users.findOneAndDelete({_id:req.user.id},{cartData:userData.cartData} )
+   res.send("Added");
+})
 
 //port
 app.listen(port, (error)=>{

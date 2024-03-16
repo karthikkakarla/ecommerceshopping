@@ -8,11 +8,11 @@ import ListProduct from '../../Components/ListProduct/ListProduct';
 const Admin = ()=>{
   return(
     <div className='admin'>
-        <Sidebar />
+         <Sidebar /> 
         <Routes>
           <Route path='/addproduct' element={<AddProduct />}/>
           <Route path='/listproduct' element={<ListProduct />}/>
-        </Routes>
+        </Routes> 
     </div>
   )
 }

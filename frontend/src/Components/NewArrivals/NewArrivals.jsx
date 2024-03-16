@@ -13,6 +13,7 @@ const NewArrivals = () =>{
     .then((res)=>res.json())
     .then((data)=>setnew_arrivals(data));
   },[]);
+  
   return(
     <div className='newarrivals'>
      <h1>New Arrivals</h1>
