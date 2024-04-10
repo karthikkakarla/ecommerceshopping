@@ -249,7 +249,7 @@ const fetchUser = async (req,res,next)=>{
 }
 
 //creating endpoint for adding productsin cartdata
-add.post('/addtocart',fetchUser, async (req,res)=>{
+app.post('/addtocart',fetchUser, async (req,res)=>{
    let userData = await Users.findOne({_id:req.user.id});
    userData.cartData[req.body.itemId]+= 1;
    await Users.findOneAndDelete({_id:req.user.id},{cartData:userData.cartData} )
