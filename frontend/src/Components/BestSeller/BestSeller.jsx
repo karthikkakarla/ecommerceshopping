@@ -10,7 +10,8 @@ const BestSeller = ()=>{
   const[bestsellers,setbestsellers] = useState([]);
 
   useEffect(()=>{
-     fetch('http://localhost:4000/bestsellers')
+    // fetch('http://localhost:4000/bestsellers')
+     fetch('https://ecommerceshopping.onrender.com/bestsellers')
      .then((res)=>res.json())
     .then((data)=>setbestsellers(data));
   },[])

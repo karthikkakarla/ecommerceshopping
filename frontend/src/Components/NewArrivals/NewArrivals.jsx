@@ -9,7 +9,7 @@ const NewArrivals = () =>{
   const[new_arrivals, setnew_arrivals] = useState([]);
 
   useEffect(()=>{
-    fetch('http://localhost:4000/newarrivals')
+    fetch('https://ecommerceshopping.onrender.com/newarrivals')
     .then((res)=>res.json())
     .then((data)=>setnew_arrivals(data));
   },[]);
